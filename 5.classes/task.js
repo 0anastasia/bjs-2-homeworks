@@ -13,15 +13,15 @@ class PrintEditionItem {
     
     set state(fix) {
         if (fix < 0) {
-            this.state = 0; 
+            this._state = 0; 
         } else if (fix > 100) {
-            this.state = 100;
+            this._state = 100;
         } else {
-            this.state = fix;
+            this._state = fix;
         }
     }
     get state() {
-        return this.state;
+        return this._state;
     }
 }
 class Magazine extends PrintEditionItem {
@@ -73,6 +73,8 @@ console.log(sherlock.state);
 sherlock.fix();
 console.log(sherlock.state);
 
+
+
 // ............................................
 
 class Library {
@@ -83,13 +85,13 @@ class Library {
     
     addBook(book) {
         this.book = book;
-        if (state > 30) {
-            this.books.push(this.book);
+        if (this.book.state > 30) {
+            return this.books.push(this.book);
         }
     }
     
     findBookBy(type, value) {
-        return this.books ? this.books.find(book => book[type] == value) : null;
+        return this.books.find(book => book[type] == value) || null;
     }
     
     giveBookByName(bookName) {
@@ -102,11 +104,6 @@ class Library {
         }
     }
 }
-
-
-
-
-
 
 
 const library = new Library("Библиотека имени Ленина");
@@ -136,3 +133,4 @@ console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
 console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
 library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
+

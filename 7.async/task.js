@@ -4,7 +4,7 @@ class AlarmClock {
         this.intervalId = null;
     }
 
-    addClock(time) {
+    addClock(time, callback) {
         if (callback === undefined || !time) {
             throw new Error('Отсутствуют обязательные аргументы')
         }
@@ -16,7 +16,7 @@ class AlarmClock {
         this.alarmCollection.push({callback, time, canCall: true})
     }
 
-    removeClock(time, callback) {
+    removeClock(time) {
         return this.alarmCollection = this.alarmCollection.filter(el => el.time !== time)
     }
 
@@ -27,7 +27,7 @@ class AlarmClock {
 
     start() {
         if (this.intervalId === null) {
-            this.intervalId = newInterval(() => {
+            this.intervalId = setInterval(() => {
                 this.alarmCollection.forEach(el => {
                     if (el.time === this.getCurrentFormattedTime() && el.canCall) {
                         el.canCall = false;

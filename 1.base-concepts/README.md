@@ -1,4 +1,5 @@
 # Домашнее задание к лекции 1 «Основные понятия»
+![Build status](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/web.yml/badge.svg)
 
 ## Задача 1
 
